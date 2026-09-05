@@ -1,9 +1,19 @@
-name: Trigger-SecOps
-on: push
-jobs:
-  test:
-    runs-on: ubuntu-latest
+name: Step 2 - Verify Application Push Trigger 
 
-    steps:
-        - run: echo "Welcome To SecOps"
-  
+
+on:
+  push:
+    branches:
+      - main
+jobs:
+  name : Verify Application Push Trigger
+  runs-on: ubuntu-latest
+  steps:
+    - name: Confirmation
+      run: |
+        echo "Application repository push."
+        echo "Repository: ${{ github.repository }}"
+        echo "Branch: ${{ github.ref_name}}"
+        echo "Commit SHA: ${{ github.sha }}"
+
+
