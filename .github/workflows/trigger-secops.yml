@@ -10,7 +10,7 @@ verify-push-trigger:
 name: Verify Application Push Trigger
 runs-on: ubuntu-latest
 
-```
+
 steps:
   - name: Confirmation
     run: |
@@ -37,4 +37,4 @@ steps:
             "commit_sha": "${{ github.sha }}"
           }
         }'
-```
+
