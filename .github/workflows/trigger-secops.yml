@@ -1,3 +1,4 @@
+```yaml
 name: Step 2 - Verify Application Push Trigger
 
 on:
@@ -10,7 +11,7 @@ jobs:
     name: Verify Application Push Trigger
     runs-on: ubuntu-latest
 
-  steps:
+    steps:
       - name: Confirmation
         run: |
           echo "Application repository push."
@@ -18,13 +19,11 @@ jobs:
           echo "Branch: ${{ github.ref_name }}"
           echo "Commit SHA: ${{ github.sha }}"
 
-
       - name: Trigger SecOps Repository
-
         env:
-          SECOPS_TRIGGER_TOKEN: ${{secrets.SECOPS_TRIGGER_TOKEN}}
-        run:
-            curl -L \
+          SECOPS_TRIGGER_TOKEN: ${{ secrets.SECOPS_TRIGGER_TOKEN }}
+        run: |
+          curl -L \
             -X POST \
             -H "Accept: application/vnd.github+json" \
             -H "Authorization: Bearer $SECOPS_TRIGGER_TOKEN" \
@@ -38,3 +37,4 @@ jobs:
                 "commit_sha": "${{ github.sha }}"
               }
             }'
+```
