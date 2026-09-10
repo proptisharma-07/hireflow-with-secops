@@ -3,10 +3,13 @@ FROM node:22-alpine
 WORKDIR /app
 
 COPY package*.json ./
-RUN npm install
+
+RUN apk update && \
+    apk upgrade && \
+    npm ci --omit=dev
 
 COPY . .
 
-EXPOSE 3000
+EXPOSE 8000
 
 CMD ["npm", "start"]
